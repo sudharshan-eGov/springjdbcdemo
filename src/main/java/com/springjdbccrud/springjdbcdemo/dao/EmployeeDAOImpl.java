@@ -14,17 +14,17 @@ public  class EmployeeDAOImpl implements EmployeeDAO {
  JdbcTemplate jdbcTemplate;
     @Override
     public int save(Employee employee) {
-        return jdbcTemplate.update("INSERT INTO employees (username, email, department) VALUES (?, ?, ?)", new Object[] {employee.getUsername(), employee.getEmail(), employee.getDepartment(), employee.getPhonenumber(), employee.getAge(), employee.getGender()});
+        return jdbcTemplate.update("INSERT INTO employees (username, email, department,age,phonenumber) VALUES (?, ?, ?, ?, ?)", new Object[] {employee.getUsername(), employee.getEmail(), employee.getDepartment(), employee.getAge(),employee.getPhonenumber()});
     }
 
     @Override
     public int update(Employee employee, int id) {
-        return jdbcTemplate.update("UPDATE employees SET username=?, email=?, department=? WHERE id=?", new Object[]{employee.getUsername(), employee.getEmail(), employee.getDepartment(),employee.getPhonenumber(), employee.getAge(), employee.getGender(),id});
+        return jdbcTemplate.update("UPDATE employees SET username=?, email=?, department=?, age=?, phonenumber=? WHERE id=?", new Object[]{employee.getUsername(), employee.getEmail(), employee.getDepartment(), employee.getAge(),employee.getPhonenumber(),id});
     }
 
     @Override
     public int delete(int id) {
-        return jdbcTemplate.update("DELETE FROM employees WHERE id=?");
+        return jdbcTemplate.update("DELETE FROM employees WHERE id=?",id);
     }
 
     @Override
