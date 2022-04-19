@@ -1,7 +1,9 @@
 package com.springjdbccrud.springjdbcdemo.dao;
 
+import com.springjdbccrud.springjdbcdemo.exception;
 import com.springjdbccrud.springjdbcdemo.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -34,6 +36,10 @@ public  class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public Employee getById(int id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM employees WHERE id=?", new BeanPropertyRowMapper<Employee>(Employee.class), id);
+        try{
+            return jdbcTemplate.queryForObject("SELECT * FROM employees WHERE id=?", new BeanPropertyRowMapper<Employee>(Employee.class), id);
+        }catch (EmptyResultDataAccessException e){
+            throw new exception("data not found");
+        }
     }
 }

@@ -14,12 +14,6 @@ public class Employee {
     private String department;
     private String phonenumber;
     private int age;
-//    public Employee(String username, String email, String department, String phonenumber, int age) {
-//        this.username = username;
-//        this.email = email;
-//        this.department = department;
-//        this.phonenumber= phonenumber;
-//        this.age = age;
-//    }
+
 
 }
