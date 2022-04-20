@@ -1,13 +1,13 @@
 package com.springjdbccrud.springjdbcdemo.dao;
 
-import java.util.List;
-
 import com.springjdbccrud.springjdbcdemo.model.Employee;
-
+import com.springjdbccrud.springjdbcdemo.model.EmployeeRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public  class EmployeeDAOImpl implements EmployeeDAO {
@@ -30,13 +30,17 @@ public  class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public List<Employee> getAll() {
-       return jdbcTemplate.query("SELECT * FROM employees", new BeanPropertyRowMapper<Employee>(Employee.class));
+       return jdbcTemplate.query("SELECT * FROM employees",new EmployeeRowMapper());
     }
 
     @Override
     public Employee getById(int id) {
+try{
+    return jdbcTemplate.queryForObject("SELECT * FROM employees WHERE id=?", new EmployeeRowMapper(), id);
 
-            return jdbcTemplate.queryForObject("SELECT * FROM employees WHERE id=?", new BeanPropertyRowMapper<Employee>(Employee.class), id);
+}catch(EmptyResultDataAccessException e){
+            return null;
+        }
 
     }
 }
