@@ -1,4 +1,4 @@
-package com.springjdbccrud.springjdbcdemo.model;
+package com.springjdbccrud.springjdbcdemo.employees.model;
 
 import org.springframework.jdbc.core.RowMapper;
 
@@ -13,9 +13,9 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
                 rs.getInt("id"),
                 rs.getString("username"),
                 rs.getString("email"),
-                rs.getString("department"),
                 rs.getString("phonenumber"),
-                rs.getInt("age")
+                rs.getInt("age"),
+                rs.getInt("department_id")
         );
     }
 

@@ -1,7 +1,7 @@
-package com.springjdbccrud.springjdbcdemo.controller;
+package com.springjdbccrud.springjdbcdemo.employees.controller;
 
-import com.springjdbccrud.springjdbcdemo.dao.EmployeeDAO;
-import com.springjdbccrud.springjdbcdemo.model.Employee;
+import com.springjdbccrud.springjdbcdemo.employees.dao.EmployeeDAO;
+import com.springjdbccrud.springjdbcdemo.employees.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,9 +1,10 @@
-package com.springjdbccrud.springjdbcdemo.dao;
+package com.springjdbccrud.springjdbcdemo.employees.dao;
 
-import com.springjdbccrud.springjdbcdemo.model.Employee;
+import com.springjdbccrud.springjdbcdemo.employees.model.Employee;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public interface EmployeeDAO {
 
     int save(Employee employee);
@@ -11,4 +12,5 @@ public interface EmployeeDAO {
     int delete(int id);
     List<Employee> getAll();
     Employee getById(int id);
+
 }
