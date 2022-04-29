@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -15,7 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+    @Repository
 public  class EmployeeDAOImpl implements EmployeeDAO {
     @Autowired
  JdbcTemplate jdbcTemplate;
@@ -45,15 +46,14 @@ public  class EmployeeDAOImpl implements EmployeeDAO {
                int employeeIdx=0;
                int departmentIdx=0;
                while (rs.next()){
-
                    if(currentEmployee == null || !(employeeId == rs.getInt("id"))){
                        employeeId=rs.getInt("id");
                        currentEmployee = new EmployeeRowMapper().mapRow(rs,employeeIdx++);
                        departmentIdx=0;
                        employees.add(currentEmployee);
                    }
+                   assert currentEmployee != null;
                    currentEmployee.setDepartment(new DepartmentRowMapper().mapRow(rs,departmentIdx++));
-
                }
                return employees;
            }
@@ -73,6 +73,7 @@ public  class EmployeeDAOImpl implements EmployeeDAO {
                     if(employee==null) {
                         employee = new EmployeeRowMapper().mapRow(rs, row);
                     }
+                    assert employee != null;
                     employee.setDepartment(new DepartmentRowMapper().mapRow(rs,row));
                     row++;
                 }
