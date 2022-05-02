@@ -8,8 +8,6 @@ CREATE TABLE employees (
    age integer NOT NULL,
    department_id int NOT NULL,
    CONSTRAINT employees_department_id FOREIGN KEY (department_id) REFERENCES department (id)
-
-
 )
 
 --insert data

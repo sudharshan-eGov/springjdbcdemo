@@ -28,6 +28,7 @@ public class DepartmentController {
     @CrossOrigin(origins = "*")
     @PostMapping("/create_department")
     public String saveDepartment(@RequestBody Department department){
+        System.out.println(department+"department");
         return dDAO.save(department)+" No. of rows saved to the database";
     }
 

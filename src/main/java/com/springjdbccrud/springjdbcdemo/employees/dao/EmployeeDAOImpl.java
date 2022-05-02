@@ -62,8 +62,8 @@ public  class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public Employee getById(int id) {
-        var sql	 = "SELECT * FROM employees,department WHERE employees.department_id=department.id and employees.id =?";
-        return jdbcTemplate.query(sql,new ResultSetExtractor<Employee>(){
+//        "SELECT * FROM employees,department WHERE employees.department_id=department.id and employees.id =?";
+        return jdbcTemplate.query("SELECT * FROM employees,department WHERE employees.department_id=department.id and employees.id =?",new ResultSetExtractor<Employee>(){
 
             @Override
             public Employee extractData(ResultSet rs) throws SQLException, DataAccessException {
